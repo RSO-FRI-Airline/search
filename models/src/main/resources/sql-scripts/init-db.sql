@@ -1,0 +1,1 @@
+INSERT INTO plane(name, number_of_seats) VALUES ('yolo', 17)

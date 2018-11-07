@@ -6,13 +6,20 @@
 
     <groupId>si.fri.rso</groupId>
     <artifactId>fri-airline-search</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>models</module>
+        <module>api</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <posgresql.version>42.0.0</posgresql.version>
+        <posgresql.version>42.2.5</posgresql.version>
+        <kumuluzee.version>3.0.0</kumuluzee.version>
+        <fri_airline.version>1.0-SNAPSHOT</fri_airline.version>
     </properties>
 
     <dependencyManagement>
@@ -52,28 +59,5 @@
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-jpa-eclipselink</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.5</version>
-        </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.kumuluz.ee</groupId>
-                <artifactId>kumuluzee-maven-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <id>package</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

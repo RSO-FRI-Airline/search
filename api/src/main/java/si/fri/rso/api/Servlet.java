@@ -1,5 +1,5 @@
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+package si.fri.rso.api;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
@@ -7,10 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 
 @WebServlet("/servlet")
 public class Servlet extends HttpServlet {
@@ -19,7 +17,7 @@ public class Servlet extends HttpServlet {
 
         EntityManager em;
 
-        Persistence.createEntityManagerFactory("airline-search");
+        Persistence.createEntityManagerFactory("fri_airline");
         PrintWriter writer = resp.getWriter();
         writer.append("Airlines search");
     }
