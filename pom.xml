@@ -7,7 +7,7 @@
     <groupId>si.fri.rso</groupId>
     <artifactId>fri-airline-search</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>models</module>
         <module>api</module>
@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <posgresql.version>42.2.5</posgresql.version>
         <kumuluzee.version>3.0.0</kumuluzee.version>
-        <fri_airline.version>1.0-SNAPSHOT</fri_airline.version>
+        <fri_airline.version>1.0.0-SNAPSHOT</fri_airline.version>
     </properties>
 
     <dependencyManagement>
