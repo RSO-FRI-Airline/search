@@ -9,7 +9,7 @@ kumuluzee:
       port: 8081
   datasources:
   - jndi-name: jdbc/fri_airline
-    connection-url: jdbc:postgresql://localhost:5432/fri_airline
+    connection-url: ${KUMULUZEE_DATASOURCES0_CONNECTIONURL}
     username: postgres
     password: pass
     max-pool-size: 20
