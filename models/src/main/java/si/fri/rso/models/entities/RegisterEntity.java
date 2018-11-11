@@ -1,17 +1,16 @@
 package si.fri.rso.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @MappedSuperclass
-public abstract class BaseEntity {
+public abstract class RegisterEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", length = 7)
-    protected int id;
+    @Column(name = "id")
+    protected String id;
 
     @JsonIgnore
     @Temporal(TemporalType.TIMESTAMP)
@@ -27,9 +26,9 @@ public abstract class BaseEntity {
         this.updatedAt = date;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getId(){return id;}
+    public String getId(){return id;}
 }

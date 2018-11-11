@@ -3,7 +3,7 @@ package si.fri.rso.models.entities;
 import javax.persistence.*;
 
 @Entity
-public class Airplane extends BaseEntity{
+public class Airplane extends RegisterEntity{
 
     private String name;
 
