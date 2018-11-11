@@ -1,0 +1,18 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:10.5
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: fri_airline
+  rso-customers:
+    image: rsoairlines/fri-airlines-search:0.0.0
+    ports:
+      - 8081:8081
+    environment:
+      KUMULUZEE_DATASOURCES0_CONNECTIONURL: jdbc:postgresql://postgres:5432/fri_airline
+    depends_on:
+      - postgres

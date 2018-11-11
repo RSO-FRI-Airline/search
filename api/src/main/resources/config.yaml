@@ -3,10 +3,13 @@ kumuluzee:
   version: 1.0.0
   env:
     name: dev
-
+  server:
+    base-url: http://localhost:8081
+    http:
+      port: 8081
   datasources:
   - jndi-name: jdbc/fri_airline
-    connection-url: jdbc:postgresql://192.168.99.100:5432/fri_airline
+    connection-url: ${KUMULUZEE_DATASOURCES0_CONNECTIONURL}
     username: postgres
     password: pass
     max-pool-size: 20
