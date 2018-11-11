@@ -15,8 +15,6 @@ public class Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        EntityManager em;
-
         Persistence.createEntityManagerFactory("fri_airline");
         PrintWriter writer = resp.getWriter();
         writer.append("Airlines search");

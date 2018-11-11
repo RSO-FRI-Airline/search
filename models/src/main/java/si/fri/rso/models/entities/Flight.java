@@ -3,11 +3,8 @@ package si.fri.rso.models.entities;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity(name = "flight")
-public class Flight {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+@Entity
+public class Flight extends BaseEntity{
 
     private Timestamp departure;
 
@@ -15,4 +12,5 @@ public class Flight {
 
     @ManyToOne
     private Schedule schedule_id;
+
 }

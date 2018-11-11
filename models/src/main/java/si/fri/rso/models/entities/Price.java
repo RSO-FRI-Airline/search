@@ -3,11 +3,8 @@ package si.fri.rso.models.entities;
 import javax.persistence.*;
 
 
-@Entity(name = "price")
-public class Price {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+@Entity
+public class Price extends BaseEntity{
 
     private float price;
 

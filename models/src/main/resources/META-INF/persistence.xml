@@ -4,7 +4,7 @@
         <non-jta-data-source>jdbc/fri_airline</non-jta-data-source>
 
         <class>si.fri.rso.models.entities.Schedule</class>
-        <class>si.fri.rso.models.entities.Plane</class>
+        <class>si.fri.rso.models.entities.Airplane</class>
         <class>si.fri.rso.models.entities.Price</class>
         <class>si.fri.rso.models.entities.Flight</class>
 
