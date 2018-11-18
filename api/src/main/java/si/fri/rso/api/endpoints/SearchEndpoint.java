@@ -15,6 +15,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -30,6 +31,7 @@ class SearchQuery{
 class SearchResult{
     public Schedule schedule;
     public double[] fares;
+    public String date;
 }
 
 @Path("search")
@@ -43,7 +45,7 @@ public class SearchEndpoint {
 
     private Random random = new Random();
 
-    private SearchResult GetResult(Schedule s){
+    private SearchResult GetResult(Schedule s, SearchQuery query){
         SearchResult r = new SearchResult();
         r.schedule = s;
         r.fares = new double[3];
@@ -52,18 +54,19 @@ public class SearchEndpoint {
         r.fares[0] = Math.round(basePrice * Math.sqrt(s.GetDuration()))-1;
         r.fares[1] = Math.round(r.fares[0] * (random.nextDouble()*0.2+1.1))-1;
         r.fares[2] = Math.round(r.fares[1] * (random.nextDouble()*0.1+1.1))-1;
+        r.date = query.date;
         return r;
     }
 
     @POST
-    public Response post(SearchQuery booking){
-        int i = LocalDate.parse(booking.date).get(DAY_OF_WEEK);
+    public Response post(SearchQuery query){
+        int i = LocalDate.parse(query.date).get(DAY_OF_WEEK);
 
-        List<Schedule> schedules = scheduleBean.find(booking.origin, booking.destination);
+        List<Schedule> schedules = scheduleBean.find(query.origin, query.destination);
 
         return Response.ok(schedules.stream()
                 .filter(s -> (s.getDay_of_week() & i) > 0)
-                .map(s -> GetResult(s))
+                .map(s -> GetResult(s, query))
                 .toArray()).build();
     }
 }
