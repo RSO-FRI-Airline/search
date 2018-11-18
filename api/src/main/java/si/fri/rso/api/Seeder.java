@@ -6,6 +6,7 @@ import si.fri.rso.api.beans.ScheduleBean;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.persistence.Persistence;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -161,5 +162,21 @@ public class Seeder {
         scheduleBean.create("12345-7", "15:15", "16:15", "JP 942", "LSZH", "LJLJ", "CRJ9");
         scheduleBean.create("1234567", "20:55", "21:55", "JP 943", "LSZH", "LJLJ", "A319");
         return Response.ok("avto").build();
+    }
+
+    @GET
+    @Path("persist")
+    public Response persist(){
+        Persistence.createEntityManagerFactory("fri_airline");
+        return Response.ok().build();
+    }
+
+    @GET
+    public Response seed(){
+        persist();
+        seedAirports();
+        seedAirplanes();
+        seedSchedule();
+        return Response.ok().build();
     }
 }

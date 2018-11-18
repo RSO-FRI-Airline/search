@@ -1,22 +1,23 @@
 package si.fri.rso.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
 @MappedSuperclass
 public abstract class RegisterEntity {
     @Id
     @Column(name = "id")
-    protected String id;
+    private String id;
 
-    @JsonIgnore
+    //@JsonIgnore
     @Temporal(TemporalType.TIMESTAMP)
-    protected Date createdAt;
+    private Date createdAt;
+
+    //@JsonIgnore
     @Temporal(TemporalType.TIMESTAMP)
-    protected Date updatedAt;
+    private Date updatedAt;
 
     public void setCreatedAt(Date date) {
         this.createdAt = date;
