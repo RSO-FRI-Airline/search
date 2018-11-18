@@ -5,7 +5,9 @@ import si.fri.rso.models.entities.Schedule;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.persistence.Query;
 import java.sql.Time;
+import java.util.List;
 
 @RequestScoped
 public class ScheduleBean extends RegisterBean<Schedule> {
@@ -46,5 +48,12 @@ public class ScheduleBean extends RegisterBean<Schedule> {
         a.setAirplane(airplaneBean.get(air));
         add(a);
         return a;
+    }
+
+    public List<Schedule> find(Airport origin, Airport destination){
+        Query q = em.createQuery("SELECT o FROM Schedule o" +
+                " WHERE o.destination.id = '" + destination.getId() +"'"+
+                " AND o.origin.id = '" + origin.getId()+"'");
+        return (List<Schedule>)q.getResultList();
     }
 }

@@ -3,6 +3,7 @@ package si.fri.rso.models.entities;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.concurrent.TimeUnit;
 
 @Entity
 public class Schedule extends RegisterEntity {
@@ -68,5 +69,10 @@ public class Schedule extends RegisterEntity {
 
     public void setAirplane(Airplane plane) {
         this.airplane = plane;
+    }
+
+    public long GetDuration(){
+        long diff = end_time.getTime() - start_time.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.SECONDS);
     }
 }
