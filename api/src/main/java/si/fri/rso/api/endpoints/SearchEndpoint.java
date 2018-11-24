@@ -17,6 +17,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -53,6 +54,7 @@ public class SearchEndpoint {
     private SearchResult GetResult(Schedule s, SearchQuery query){
         SearchResult r = new SearchResult();
         r.schedule = s;
+        r.prices = new Price[3];
 
         double basePrice =
                 LocalTime.now().get(ChronoField.HOUR_OF_DAY) > 15?8.98: 9.21;
@@ -87,7 +89,9 @@ public class SearchEndpoint {
 
     @POST
     public Response post(SearchQuery query){
-        int i = query.date.toInstant().get(DAY_OF_WEEK);
+        Calendar c = Calendar.getInstance();
+        c.setTime(query.date);
+        int i = c.get(Calendar.DAY_OF_WEEK);
 
         List<Schedule> schedules = scheduleBean.find(query.origin, query.destination);
 
