@@ -20,6 +20,7 @@
         <posgresql.version>42.2.5</posgresql.version>
         <kumuluzee.version>3.0.0</kumuluzee.version>
         <fri_airline.version>1.0.0-SNAPSHOT</fri_airline.version>
+        <kumuluzee-discovery.version>1.1.0</kumuluzee-discovery.version>
     </properties>
 
     <dependencyManagement>
@@ -36,6 +37,11 @@
                 <groupId>com.kumuluz.ee.cors</groupId>
                 <artifactId>kumuluzee-cors</artifactId>
                 <version>1.0.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kumuluz.ee.discovery</groupId>
+                <artifactId>kumuluzee-discovery-etcd</artifactId>
+                <version>${kumuluzee-discovery.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

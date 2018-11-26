@@ -1,6 +1,7 @@
 package si.fri.rso.api;
 
 import com.kumuluz.ee.cors.annotations.CrossOrigin;
+import com.kumuluz.ee.discovery.annotations.RegisterService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.ApplicationPath;
@@ -8,6 +9,7 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
+@RegisterService
 @ApplicationPath("v1")
 @CrossOrigin
 public class AirlineApplication extends Application {
