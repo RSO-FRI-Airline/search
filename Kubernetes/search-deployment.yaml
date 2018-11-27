@@ -30,7 +30,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: pg-pass
-              key: KUMULUZEE_DATASOURCES0_PASSWORD
+              key: db-password
         ports:
         - containerPort: 8081
           name: server
