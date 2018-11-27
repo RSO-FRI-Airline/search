@@ -10,11 +10,16 @@ kumuluzee:
   datasources:
   - jndi-name: jdbc/fri_airline
     connection-url: ${KUMULUZEE_DATASOURCES0_CONNECTIONURL}
-    username: admin
+    username: ${KUMULUZEE_DATASOURCES0_USERNAME}
     password: ${KUMULUZEE_DATASOURCES0_PASSWORD}
-#    username: postgres
-#    password: pass
     max-pool-size: 20
+  health:
+    checks:
+      data-source-health-check:
+        jndi-name: jdbc/fri_airline
+  config:
+    etcd:
+      hosts: http://127.0.0.1:2379
   discovery:
     etcd:
       hosts: http://127.0.0.1:2379
