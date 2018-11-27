@@ -1,5 +1,7 @@
 package si.fri.rso.api.endpoints;
 
+import org.eclipse.microprofile.metrics.annotation.Metered;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import si.fri.rso.api.beans.AirportBean;
 import si.fri.rso.models.entities.Airport;
 
@@ -22,6 +24,8 @@ public class AirportsEndpoint {
     private AirportBean airportBean;
 
     @GET
+    @Timed
+    @Metered(name = "get_airports_requests")
     public Response get(){
         List<Airport> airports = airportBean.get();
         return Response.ok(airports).build();

@@ -39,6 +39,10 @@
             <artifactId>models</artifactId>
             <version>${fri_airline.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.metrics</groupId>
+            <artifactId>kumuluzee-metrics-core</artifactId>
+        </dependency>
     </dependencies>
 
 

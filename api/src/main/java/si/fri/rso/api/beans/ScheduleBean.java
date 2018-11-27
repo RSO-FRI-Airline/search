@@ -1,5 +1,7 @@
 package si.fri.rso.api.beans;
 
+import org.eclipse.microprofile.metrics.Histogram;
+import org.eclipse.microprofile.metrics.annotation.Metric;
 import si.fri.rso.models.entities.Airport;
 import si.fri.rso.models.entities.Schedule;
 
@@ -11,6 +13,10 @@ import java.util.List;
 
 @RequestScoped
 public class ScheduleBean extends RegisterBean<Schedule> {
+
+    @Inject
+    @Metric(name = "simple_histogram")
+    Histogram histogram;
 
     @Inject
     AirportBean airportBean;
@@ -54,6 +60,8 @@ public class ScheduleBean extends RegisterBean<Schedule> {
         Query q = em.createQuery("SELECT o FROM Schedule o" +
                 " WHERE o.destination.id = '" + destination.getId() +"'"+
                 " AND o.origin.id = '" + origin.getId()+"'");
-        return (List<Schedule>)q.getResultList();
+        List<Schedule> results = q.getResultList();
+        histogram.update(results.size());
+        return results;
     }
 }

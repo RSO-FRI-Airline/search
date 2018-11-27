@@ -1,6 +1,9 @@
 package si.fri.rso.api.endpoints;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.eclipse.microprofile.metrics.Counter;
+import org.eclipse.microprofile.metrics.annotation.Metered;
+import org.eclipse.microprofile.metrics.annotation.Metric;
 import si.fri.rso.api.beans.AirportBean;
 import si.fri.rso.api.beans.PriceBean;
 import si.fri.rso.api.beans.ScheduleBean;
@@ -44,6 +47,10 @@ class SearchResult{
 public class SearchEndpoint {
 
     @Inject
+    @Metric(name = "price_counter")
+    private Counter counter;
+
+    @Inject
     private ScheduleBean scheduleBean;
 
     private Random random = new Random();
@@ -83,11 +90,13 @@ public class SearchEndpoint {
         priceBean.add(p);
         r.prices[2] = p;
 
+        counter.inc(4);
         r.date = query.date;
         return r;
     }
 
     @POST
+    @Metered(name = "search_requests")
     public Response post(SearchQuery query){
         Calendar c = Calendar.getInstance();
         c.setTime(query.date);
@@ -103,6 +112,7 @@ public class SearchEndpoint {
 
     @Path("/price/{token}")
     @GET
+    @Metered(name = "get_price_requests")
     public Response getPrice(@PathParam(value = "token") int token){
         return Response.ok(priceBean.get(token)).build();
     }

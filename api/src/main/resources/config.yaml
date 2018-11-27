@@ -25,3 +25,7 @@ kumuluzee:
       hosts: http://127.0.0.1:2379
     ttl: 30
     ping-interval: 5
+  metrics:
+    web-instrumentation:
+    - name: search-endpoint
+      url-pattern: /v1/*
