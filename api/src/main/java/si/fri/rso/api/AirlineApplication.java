@@ -1,5 +1,6 @@
 package si.fri.rso.api;
 
+import com.kumuluz.ee.common.config.EeConfig;
 import com.kumuluz.ee.discovery.annotations.RegisterService;
 
 import javax.enterprise.context.ApplicationScoped;
